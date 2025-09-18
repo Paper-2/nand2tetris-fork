@@ -1,3 +1,16 @@
+**Note: This repository is a fork of the original Nand2Tetris software suite. I am not the original author.
+The original project was developed by Nisan and Schocken, MIT Press 2005.**
+
+    Long Term Goals:
+    - Provide an text based alternative for Students to JSL.
+    - Implement projects 1 and 2 of CIS 352, and their respective tests to grade.
+    - Write a proper Instructions set on how to use the new tools
+    - Remove features that are not needed for these projects?
+
+    Short Term Goals:
+    - Compiler HDL -> .class 
+    - wip
+
 The contents of this file are subject to the GNU General Public License
 (GPL) Version 2 or later (the "License"); you may not use this file except
 in compliance with the License. You may obtain a copy of the License at
