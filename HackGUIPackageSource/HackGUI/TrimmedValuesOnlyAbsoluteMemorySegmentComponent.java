@@ -17,7 +17,7 @@
 
 package HackGUI;
 
-import Hack.*;
+//import Hack.*; This import is unused and generates a warning
 import javax.swing.table.*;
 import javax.swing.*;
 import java.awt.*;
