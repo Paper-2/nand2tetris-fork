@@ -3,12 +3,11 @@ The original project was developed by Nisan and Schocken, MIT Press 2005.**
 
     Long Term Goals:
     - Provide an text based alternative for Students to JSL.
-    - Implement projects 1 and 2 of CIS 352, and their respective tests to grade.
+    - Implement projects 1 and 2 of CIS 352, and their respective tests to grade. 
     - Write a proper Instructions set on how to use the new tools
     - Remove features that are not needed for these projects?
 
     Short Term Goals:
-    - Compiler HDL -> .class 
     - wip
 
 The contents of this file are subject to the GNU General Public License
