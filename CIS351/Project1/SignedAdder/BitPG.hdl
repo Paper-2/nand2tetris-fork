@@ -1,0 +1,13 @@
+// BitPG.hdl
+// Per-bit propagate/generate unit
+// inputs: a, b
+// outputs: p, g
+
+CHIP BitPG {
+    IN a, b;
+    OUT p, g;
+
+    PARTS:
+    Xor (a=a, b=b, out=p);
+    And (a=a, b=b, out=g);
+}

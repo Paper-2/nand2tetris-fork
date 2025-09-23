@@ -1,0 +1,31 @@
+// CLA4.hdl
+// 4-bit carry look-ahead adder (modular)
+// inputs: a[4], b[4], cin
+// outputs: sum[4], cout
+
+CHIP CLA4 {
+    IN a[4], b[4], cin;
+    OUT sum[4], cout, c3i;   // expose carry into MSB (bit index 3) of this block
+
+    PARTS:
+    // per-bit propagate/generate
+    BitPG (a=a[0], b=b[0], p=p0, g=g0);
+    BitPG (a=a[1], b=b[1], p=p1, g=g1);
+    BitPG (a=a[2], b=b[2], p=p2, g=g2);
+    BitPG (a=a[3], b=b[3], p=p3, g=g3);
+
+    // carry unit computes internal carries and cout (accepts scalar p/g inputs)
+    CarryUnit4 (p0=p0, p1=p1, p2=p2, p3=p3,
+                g0=g0, g1=g1, g2=g2, g3=g3,
+                cin=cin,
+                c1=c1, c2=c2, c3=c3w, cout=cout);
+
+    // expose internal carry into MSB (bit 3)
+    Or(a=c3w, b=false, out=c3i);
+
+    // sum bits: sum[i] = p_i XOR c[i] (c0 = cin)
+    Xor (a=p0, b=cin, out=sum[0]);
+    Xor (a=p1, b=c1,  out=sum[1]);
+    Xor (a=p2, b=c2,  out=sum[2]);
+    Xor (a=p3, b=c3w,  out=sum[3]);
+}

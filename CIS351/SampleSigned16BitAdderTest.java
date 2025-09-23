@@ -1,5 +1,3 @@
-package CIS351.Project1.UnsignedAdder;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.BeforeClass;
@@ -15,10 +13,17 @@ import Hack.Gates.GatesManager;
 public class SampleSigned16BitAdderTest {
 
   private static HardwareSimulator sim;
+
+  private static final String PATH_TO_BUILTIN_CHIPS = "..\\InstallDir\\builtInChips"; // Adjust as needed, InstallDir is the equivalent of tools
+
+  static {
+    // Always point to built-in chips directory
+    GatesManager.getInstance().setBuiltInDir(new java.io.File(PATH_TO_BUILTIN_CHIPS));
+  }
   private static final String DEFAULT_HDL =
       System.getenv("HDL") != null && !System.getenv("HDL").trim().isEmpty()
           ? System.getenv("HDL").trim()
-          : "C:\\Users\\holac\\source\\bin\\nand2tetris\\projects\\signed CLA\\CLA16.hdl";
+          : "./Project1/SignedAdder/CLA16.hdl";
 
 
   @BeforeClass

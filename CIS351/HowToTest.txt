@@ -1,0 +1,9 @@
+
+# Part 0:
+set installDir (Tools if the software was downloaded) as the CWD
+
+# Part 1: Compile the test
+javac -cp .;..\CIS351;bin\lib\*;..\CIS351\junit-4.13.2.jar;..\CIS351\hamcrest-core-1.3.jar ..\CIS351\SampleSigned16BitAdderTest.java
+
+# Part 2: Run the test
+java -cp .;..\CIS351;bin\lib\*;..\CIS351\junit-4.13.2.jar;..\CIS351\hamcrest-core-1.3.jar -Dhdl=..\CIS351\Project1\SignedAdder\CLA16.hdl org.junit.runner.JUnitCore SampleSigned16BitAdderTest
