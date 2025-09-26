@@ -3,7 +3,7 @@ name: Build Latest Distribution
 on:
   push:
     branches:
-      - main
+      - release
 
 permissions:
   contents: write
@@ -33,3 +33,13 @@ jobs:
         with:
           name: dist-zip
           path: app/build/distributions/nand2tetris-CIS351.zip
+      - name: Publish zip to latest-dist branch
+        if: github.ref == 'refs/heads/release'
+        run: |
+          git fetch origin
+          git checkout -B latest-dist
+          mkdir -p dist
+          cp app/build/distributions/nand2tetris-CIS351.zip dist/
+          git add dist/nand2tetris-CIS351.zip
+          git commit -m "Update latest distribution ($(date -u +%Y-%m-%dT%H:%M:%SZ))" || echo "No changes"
+          git push origin latest-dist --force
