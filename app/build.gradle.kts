@@ -73,27 +73,23 @@ val splitJars = tasks.register("splitJars") {
     dependsOn(hackJar, hackGuiJar, simulatorsJar, simulatorsGuiJar, compilersJar, translatorsGuiJar, assemblerGuiJar)
 }
 
-// Copy subset jars into install layout (bin/lib) and promote running scripts (if present) without breaking configuration cache.
+val purgeInnerTools by tasks.registering(Delete::class) {
+    delete(installLayoutDir.map { it.dir("tools") })
+}
+
 val augmentInstallLayout by tasks.registering(Copy::class) {
     description = "Add subset jars and promoted running scripts to install layout"
-    dependsOn(installLayout, splitJars, tasks.named("processResources"))
+    dependsOn(installLayout, splitJars, tasks.named("processResources"), purgeInnerTools)
     into(installLayoutDir)
-
-    // Remove any stale 'tools' directory from previous builds (prevents nested tools/tools in final dist)
-    doFirst {
-        val stale = installLayoutDir.get().dir("tools").asFile
-        if (stale.exists()) stale.deleteRecursively()
-    }
 
     // Add each subset jar into bin/lib
     listOf(hackJar, hackGuiJar, simulatorsJar, simulatorsGuiJar, compilersJar, translatorsGuiJar, assemblerGuiJar).forEach { jarTask ->
         from(jarTask.flatMap { it.archiveFile }) { into("bin/lib") }
     }
 
-    // Promote running scripts (if compiled resources produced them) to the root of the install layout
     from(installLayoutDir.map { it.dir("bin/classes/runningScripts") }) {
         include("*.bat", "*.sh")
-        // Place scripts at install layout root (will appear under tools/ in final distribution)
+        into("")
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
 
