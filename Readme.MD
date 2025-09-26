@@ -1,3 +1,11 @@
+# Nand2Tetris Open Source
+
+This repository contains a fork of the Nand2Tetris software suite with additional features and improvements.
+
+## Download
+
+You can download the latest version of this Nand2Tetris fork [here] (<https://raw.githubusercontent.com/Paper-2/nand2tetris-fork/latest-dist/dist/nand2tetris-CIS351.zip>).
+
 **Note: This repository is a fork of the original Nand2Tetris software suite. I am not the original author.
 The original project was developed by Nisan and Schocken, MIT Press 2005.**
 
