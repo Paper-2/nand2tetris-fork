@@ -36,6 +36,9 @@ jobs:
       - name: Publish zip to latest-dist branch
         if: github.ref == 'refs/heads/release'
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
           git fetch origin
           git checkout -B latest-dist
           mkdir -p dist
